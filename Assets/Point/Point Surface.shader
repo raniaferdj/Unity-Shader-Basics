@@ -62,9 +62,12 @@ Shader "Graph/Point Surface" {
 
             ////surface.Albedo = input.worldPos* 0.5 + 0.5;
             
-            //*we can eliminate the blue by including only the red and green channels when setting the albedo
-            //* the saturate function (common operation in shaders) => clamp colors => ensure they remain in the 0-1 range
-            surface.Albedo.rg = saturate(input.worldPos.xy * 0.5 + 0.5); // => blue component stays 0
+            //we can eliminate the blue by including only the red and green channels when setting the albedo
+            //the saturate function (common operation in shaders) => clamp colors => ensure they remain in the 0-1 range
+            ////surface.Albedo.rg = saturate(input.worldPos.xy * 0.5 + 0.5); // => blue component stays 0
+
+            // include Z again
+            surface.Albedo = saturate(input.worldPos * 0.5 + 0.5);
             
             // make it look like the default material (average smoothness)
             //// surface.Smoothness = 0.5;

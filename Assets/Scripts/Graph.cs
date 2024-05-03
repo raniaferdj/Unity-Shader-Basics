@@ -9,6 +9,11 @@ public class Graph : MonoBehaviour //MonoBehaviour extends Behaviour, which exte
     [SerializeField, Range(10, 100)]
     int resolution = 10;
 
+    // selecting functions in the editor
+    ////[SerializeField, Range(0, 2)]int
+    [SerializeField]
+    FunctionLibrary.FunctionName function;
+
     // tracking the points for animating the graph
     Transform[] points;
 
@@ -26,15 +31,36 @@ public class Graph : MonoBehaviour //MonoBehaviour extends Behaviour, which exte
         // reduce the scale of the object to better see them in the new domain
         var scale = Vector3.one * step;
 
-        //  create an array of points of length equal to resolution of the graph
-        points = new Transform[resolution];
-        // points.length == resolution
-        for (int i = 0; i<points.Length; i++){
+        ////  create an array of points of length equal to resolution of the graph
+        ////points = new Transform[resolution];
+        
+        // *add another dimension => change the array to a grid of points
+        points = new Transform[resolution * resolution];
+
+        // points.length is equal to resolution
+        // this is a 3d loop:
+        /* 
+            *we track x too
+            *each row has to be offset along the z dimension 
+            *=> add z to the loop
+            *=> z will only increment when we move to the next row
+        */
+
+        for (int i = 0, x = 0, z = 0 ; i<points.Length; i++, x++){
+            // *each time we finish a row we reset x and increment z
+            if (x == resolution){
+                x = 0;
+                z += 1;
+            }
             // instantiate clones the Unity object passed to it => add an instance of the prefab to the scene
             // fill the array with references to our points
             Transform point = points[i] = Instantiate(pointPrefab);
             point.localPosition = Vector3.right * i;
-            position.x = (i + 0.5f)*step - 1f; // to fill the -1, 1 range
+            ////position.x = (i + 0.5f)*step - 1f; // to fill the -1, 1 range
+            //* we use x instead of i to calculate the x coordinate
+            position.x = (x + 0.5f)*step - 1f;
+            //* set the z coordinate
+            position.z = (z + 0.5f)*step - 1f;
             // to adjust the graph on each frame we need to set the Y in the update method
             //f(x) = x^3
             ////position.y = position.x * position.x * position.x;
@@ -53,18 +79,26 @@ public class Graph : MonoBehaviour //MonoBehaviour extends Behaviour, which exte
         // point.localPosition = Vector3.right * 2f;
     }
     void Update () {
+        // get a function delegate based on the function selected in the editor
+        FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
+
         float time = Time.time;
         for (int i = 0; i<points.Length; i++) {
             // get a reference of the current array element and store it in a variable
             Transform point = points[i];
             // set the Y coordinate based on X
             Vector3 position = point.localPosition;
+
             // point.localPosition.y is not a public value
             ////position.y = position.x * position.x * position.x;
             // we will use the sine function because it changes based on time
             // we scale x by pi to see the whole repeating pattern
             // to animate this function we add the current game time to X before calculating the sine function 
-            position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+            ////position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+            // we will use the wave function from FunctionLibrary => it's the same
+
+            // we invoke the delegate variable instead of an explicit method
+            position.y = f(position.x, position.z, time);
             point.localPosition = position;
             
 
