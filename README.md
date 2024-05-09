@@ -30,6 +30,7 @@ Moving forward, we explore the intricacies of displaying mathematical surfaces w
 **Results:** See the mesmerizing Ripple, Sphere and Torus below!
 
 ![Ripple](/github_image_results/ripple.gif)
+
 ![Sphere](/github_image_results/sphere-unity.gif)
 ![Torus](/github_image_results/torus-unity.gif)
 
