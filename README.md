@@ -15,10 +15,6 @@ In this tutorial phase, we delve into the fundamentals of graph visualization an
 - Implementing surface shaders and shader graphs for enhanced visual effects.
 - Adding animation to bring the graph to life.
 
-**Result:** See the mesmerizing sine wave graph below!
-
-![Sine](/github_image_results/sine.png)
-
 [View Code (grid branch)](https://github.com/raniaferdj/unity-shader-basics/tree/graph)
 
 
@@ -29,12 +25,12 @@ Moving forward, we explore the intricacies of displaying mathematical surfaces w
 - Creating a comprehensive function library for efficient code organization.
 - Leveraging delegates and enumeration types to enhance functionality.
 - Displaying 2D functions on a grid for visualization purposes.
-- Defining and rendering complex surfaces in a 3D environment (*yet to come*)
+- Defining and rendering complex surfaces in a 3D environment
 
-**Results:** Feast your eyes on these dynamic multiwave and ripple effects!
-
-![Multiwave](/github_image_results/multiwave.gif)
+**Results:** See the mesmerizing Ripple, Sphere and Torus below!
 
 ![Ripple](/github_image_results/ripple.gif)
+![Sphere](/github_image_results/sphere-unity.gif)
+![Torus](/github_image_results/torus-unity.gif)
 
 [View Code (grid branch)](https://github.com/raniaferdj/unity-shader-basics/tree/graph)
