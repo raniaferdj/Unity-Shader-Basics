@@ -34,4 +34,4 @@ Moving forward, we explore the intricacies of displaying mathematical surfaces w
 ![Sphere](/github_image_results/sphere-unity.gif)
 ![Torus](/github_image_results/torus-unity.gif)
 
-[View Code (grid branch)](https://github.com/raniaferdj/unity-shader-basics/tree/graph)
+[View Code (grid branch)](https://github.com/raniaferdj/unity-shader-basics/tree/math_surface)
